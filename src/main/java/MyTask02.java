@@ -17,6 +17,7 @@ public class MyTask02 {
         } else { //Ничего не будем делать
             System.err.println("Нет такого варианта выбора");
         }
+        scan.close();
 
     }
 }
