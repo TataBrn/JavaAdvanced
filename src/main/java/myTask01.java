@@ -1,14 +1,17 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * Выполнение операций (сложение, вычитание, умножение, деление) над двумя дробными числами
- * Вывод результата с точностью до 4 знаков
- * @author Miller Tatyana
- * @see #doOperation(float, float, char)
- */
 public class myTask01 {
     public static void main(String[] args) throws IOException {
+        startCalculate ();
+    }
+    /**
+     * Выполнение операций (сложение, вычитание, умножение, деление) над двумя дробными числами
+     * Вывод результата с точностью до 4 знаков
+     * @author Miller Tatyana
+     * @see #doOperation(float, float, char)
+     */
+    public static void startCalculate () throws IOException {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Введите первое число");
@@ -38,8 +41,8 @@ public class myTask01 {
             System.err.println("Нет такой операции");
         }
         scan.close();
-    }
 
+    }
     /**
      *
      * @author Miller Tatyana
