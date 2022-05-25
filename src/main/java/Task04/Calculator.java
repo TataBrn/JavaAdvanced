@@ -1,35 +1,49 @@
 package Task04;
 
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
 
     private Scanner scan;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InputMismatchException {
         double num1; //Первое число
         double num2; //Второе число
         char operation; //Операция над числами
         double result; //Результат выполнения операции
         Calculator calculator = new Calculator();
         calculator.scan = new Scanner(System.in);
-        //Запрашиваем у пользователя числа
-        num1 = calculator.requestNumber ("Введите первое число");
-        num2 = calculator.requestNumber ("Введите второе число");
-        //Запрашиваем у пользователя операцию
-        operation = calculator.requestOperation();
+        try {
+            //Запрашиваем у пользователя числа
+            num1 = calculator.requestNumber("Введите первое число");
+            num2 = calculator.requestNumber("Введите второе число");
+            //Запрашиваем у пользователя операцию
+            operation = calculator.requestOperation();
 
-        calculator.scan.close();
-        //Если операцию выполнить можно (нет делени на ноль), выполняем, иначе пишем сообщение об этом
-        if (calculator.checkOperations (num1, num2, operation)) {
+            /* Убрали эту проверку на возможность выполнить операцию в задании 6 Обработка исключений
+            //Если операцию выполнить можно (нет делени на ноль), выполняем, иначе пишем сообщение об этом
+            if (calculator.checkOperations (num1, num2, operation)) {
+                result = calculator.getResultOperation(num1, num2, operation);
+                calculator.printResult (num1, num2, operation, result);
+            }
+            else {
+                System.out.println("Невозможно выполнить операцию");
+            }
+            */
+
+            //Выполняем операцию с числами.
+            //Нет проверки деления на ноль, так как в методе деления добавили обработку исключения
             result = calculator.getResultOperation(num1, num2, operation);
-            calculator.printResult (num1, num2, operation, result);
+            calculator.printResult(num1, num2, operation, result);
         }
-        else {
-            System.out.println("Невозможно выполнить операцию");
+        catch (InputMismatchException e) {
+            System.err.println("Введённое значение не является числом.\nЗапустите программу ещё раз и введите правильное числовое значение ");
         }
-
+        finally {
+            calculator.scan.close();
+        }
 
     }
 
@@ -38,11 +52,10 @@ public class Calculator {
       * @param text - Приглашение для ввода
      * @return - Введенное число
      */
-    private double requestNumber (String text) {
+    private double requestNumber (String text){
         double number;
         System.out.println(text);
         number = scan.nextDouble();
-//        scan.close();
         return number;
     }
 
@@ -57,9 +70,6 @@ public class Calculator {
         validOperations.add('-');
         validOperations.add('*');
         validOperations.add('/');
-
-
-//       Scanner scan = new Scanner(System.in);
 
         System.out.println("Введите действие:");
         System.out.println("+ - чтобы найти сумму чисел");
@@ -80,7 +90,6 @@ public class Calculator {
                 System.out.println("Нет такой операции. Введите символ операции ещё раз");
             }
         }
-//        scan.close();
         return operation;
     }
 
@@ -104,7 +113,7 @@ public class Calculator {
      * @param operation Операция
      * @return Возвращает результат выполнения операции над числами num1 и num2
      */
-    private double getResultOperation (double num1, double num2, char operation) {
+    private double getResultOperation (double num1, double num2, char operation)  {
         NumbersOperations myOperations = new NumbersOperations();
         double result = 0; //Результат выполнения операции
         switch (operation) {
