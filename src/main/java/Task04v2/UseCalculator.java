@@ -8,7 +8,7 @@ public class UseCalculator {
         String operations = "+-*/";
         Scanner scan;
         scan = new Scanner(System.in);
-        double num1, num2, result;
+        double num1, num2;
         char operation;
 
         System.out.println("Введите первое число");
@@ -24,8 +24,8 @@ public class UseCalculator {
         }
         else {
             Calculator myCalculator = new Calculator(num1, num2, operation);
-            result = myCalculator.doOperation();
-            System.out.printf("%8.2f %s %8.2f = %8.2f", myCalculator.getNumOne(), myCalculator.getOperation(), myCalculator.getNumTwo(), result);
+
+            System.out.printf("%8.2f %s %8.2f = %8.2f", myCalculator.getNumOne(), myCalculator.getOperation(), myCalculator.getNumTwo(), myCalculator.doOperation());
 
         }
 
