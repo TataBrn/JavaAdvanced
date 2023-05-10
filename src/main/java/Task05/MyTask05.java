@@ -56,11 +56,12 @@ public class MyTask05 {
             //формируем множество слов
             Set<String> setOfWordsFromFile = new HashSet(wordsFromFile);
 
-            //Формируем словарь, в котором ключи - это слова, значение - кол-во слов
+            //Формируем Map, в котором ключи - это слова, значение - кол-во слов
             Map<String, Integer> countOfWords = new HashMap<String, Integer>();
+            int a;
             for (String st : wordsFromFile) {
                 if (countOfWords.containsKey(st)) {
-                    int a = countOfWords.get(st);
+                    a = countOfWords.get(st);
                     countOfWords.put(st, a + 1);
                 } else {
                     countOfWords.put(st, 1);
